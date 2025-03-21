@@ -80,7 +80,7 @@ struct Matrix {
 fn main() {
     let fields = Matrix::struct_reflection().unwrap();
     println!("Matrix fields: {:?}", fields);
-    // Output includes fields like: ["values__0_0", "values__0_1", ..., "name"]
+    // Output includes fields like: ["values__0__0", "values__0__1", ..., "name"]
 }
 ```
 
