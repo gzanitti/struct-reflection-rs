@@ -1,0 +1,13 @@
+[package]
+name = "struct-reflection-derive"
+version = "0.1.0"
+edition = "2021"
+description = "Derive macro implementation for struct-reflection"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+proc-macro2 = "1.0.92"
+quote = "1.0.38"
+syn = "2.0.95"

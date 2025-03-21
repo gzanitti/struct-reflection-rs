@@ -1,0 +1,10 @@
+[package]
+name = "struct-reflection"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+struct-reflection-derive = { version = "0.1.0", path = "./struct-reflection-derive" }
+
+[workspace]
+members = ["struct-reflection-derive"]
