@@ -10,6 +10,15 @@ pub trait StructReflectionHelper {
     fn struct_reflection() -> Option<Vec<String>>;
 }
 
+/// Implementation of StructReflectionHelper for any type that implements StructReflection.
+/// This bridges the two traits, allowing types with #[derive(StructReflection)] to work
+/// in contexts that require StructReflectionHelper.
+impl<T: StructReflection> StructReflectionHelper for T {
+    fn struct_reflection() -> Option<Vec<String>> {
+        T::struct_reflection()
+    }
+}
+
 impl<T: StructReflectionHelper, const N: usize> StructReflectionHelper for [T; N] {
     fn struct_reflection() -> Option<Vec<String>> {
         match T::struct_reflection() {
