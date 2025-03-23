@@ -116,6 +116,9 @@ struct OptionalGenericTuple<T>(
     Option<[T; 2]>, // 2
 );
 
+#[derive(StructReflection)]
+struct NestedArrayOfTupleStructs([[BasicTupleStruct; 3]; 2], String);
+
 #[test]
 fn test_basic_tuple_struct() {
     let names = BasicTupleStruct::struct_reflection();
@@ -236,4 +239,33 @@ fn test_nested_optional_tuple() {
 fn test_optional_generic_tuple() {
     let names = OptionalGenericTuple::<i32>::struct_reflection();
     assert_eq!(names.unwrap(), vec!["0", "1__optional", "2__optional"]);
+}
+
+#[test]
+fn test_nested_array_of_tuple_structs() {
+    let names = NestedArrayOfTupleStructs::struct_reflection();
+    assert_eq!(
+        names.unwrap(),
+        vec![
+            "0__0__0__0",
+            "0__0__0__1",
+            "0__0__0__2",
+            "0__0__1__0",
+            "0__0__1__1",
+            "0__0__1__2",
+            "0__0__2__0",
+            "0__0__2__1",
+            "0__0__2__2",
+            "0__1__0__0",
+            "0__1__0__1",
+            "0__1__0__2",
+            "0__1__1__0",
+            "0__1__1__1",
+            "0__1__1__2",
+            "0__1__2__0",
+            "0__1__2__1",
+            "0__1__2__2",
+            "1"
+        ]
+    );
 }

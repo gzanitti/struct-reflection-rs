@@ -10,11 +10,30 @@ pub trait StructReflectionHelper {
     fn struct_reflection() -> Option<Vec<String>>;
 }
 
+impl<T: StructReflectionHelper, const N: usize> StructReflectionHelper for [T; N] {
+    fn struct_reflection() -> Option<Vec<String>> {
+        match T::struct_reflection() {
+            Some(inner_fields) => {
+                let mut fields = Vec::new();
+
+                for i in 0..N {
+                    for field in &inner_fields {
+                        fields.push(format!("{i}__{field}"));
+                    }
+                }
+
+                Some(fields)
+            }
+            None => Some((0..N).map(|i| i.to_string()).collect()),
+        }
+    }
+}
+
 // Note on Option<T> implementation:
 //
 // Ideally, we would handle Option<T> differently based on T:
 // - For primitives: return a single "optional" field
-// - For structs: return internal fields with "optional__" prefix
+// - For structs: return internal fields with "__optional" suffix
 //
 // This isn't currently possible in stable Rust due to trait coherence rules
 // and lack of specialization. As a compromise, we use a simplified implementation

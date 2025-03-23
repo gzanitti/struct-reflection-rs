@@ -137,6 +137,13 @@ struct OptionalGenericStruct<T> {
     maybe_array: Option<[T; 2]>,
 }
 
+// Struct with nested array of structs
+#[derive(StructReflection)]
+struct NestedArrayOfStructs {
+    items: [[BasicStruct; 3]; 2],
+    description: String,
+}
+
 #[test]
 fn test_basic_struct() {
     let names = BasicStruct::struct_reflection();
@@ -342,5 +349,34 @@ fn test_optional_generic_struct() {
     assert_eq!(
         names.unwrap(),
         vec!["id", "maybe_data__optional", "maybe_array__optional"]
+    );
+}
+
+#[test]
+fn test_nested_array_of_structs() {
+    let names = NestedArrayOfStructs::struct_reflection();
+    assert_eq!(
+        names.unwrap(),
+        vec![
+            "items__0__0__field_one",
+            "items__0__0__field_two",
+            "items__0__0__field_three",
+            "items__0__1__field_one",
+            "items__0__1__field_two",
+            "items__0__1__field_three",
+            "items__0__2__field_one",
+            "items__0__2__field_two",
+            "items__0__2__field_three",
+            "items__1__0__field_one",
+            "items__1__0__field_two",
+            "items__1__0__field_three",
+            "items__1__1__field_one",
+            "items__1__1__field_two",
+            "items__1__1__field_three",
+            "items__1__2__field_one",
+            "items__1__2__field_two",
+            "items__1__2__field_three",
+            "description"
+        ]
     );
 }
