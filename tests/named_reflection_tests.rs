@@ -144,6 +144,14 @@ struct NestedArrayOfStructs {
     description: String,
 }
 
+// Struct with nested array of generic structs
+#[derive(StructReflection)]
+struct NestedArrayOfGenericStructs<T> {
+    // Array bidimensional 2x2 de GenericStruct<T>
+    items: [[GenericStruct<T>; 2]; 2],
+    description: String,
+}
+
 #[test]
 fn test_basic_struct() {
     let names = BasicStruct::struct_reflection();
@@ -376,6 +384,29 @@ fn test_nested_array_of_structs() {
             "items__1__2__field_one",
             "items__1__2__field_two",
             "items__1__2__field_three",
+            "description"
+        ]
+    );
+}
+
+#[test]
+fn test_nested_array_of_generic_structs() {
+    let names = NestedArrayOfGenericStructs::<i32>::struct_reflection();
+    assert_eq!(
+        names.unwrap(),
+        vec![
+            "items__0__0__data",
+            "items__0__0__count",
+            "items__0__0__enabled",
+            "items__0__1__data",
+            "items__0__1__count",
+            "items__0__1__enabled",
+            "items__1__0__data",
+            "items__1__0__count",
+            "items__1__0__enabled",
+            "items__1__1__data",
+            "items__1__1__count",
+            "items__1__1__enabled",
             "description"
         ]
     );
