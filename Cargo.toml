@@ -1,7 +1,15 @@
 [package]
-name = "struct-reflection"
+name = "struct-reflection"   
 version = "0.1.0"
 edition = "2021"
+authors = ["Gaston Zanitti <gzanitti@gmail.com>"]
+description = "A Rust library for obtaining struct field names at runtime through reflection-like capabilities"
+license = "MIT"                 
+repository = "https://github.com/tu-user/struct-reflection-rs"
+documentation = "https://github.com/gzanitti/struct-reflection-rs"
+readme = "README.md"
+keywords = ["reflection", "struct", "macro", "derive"]
+categories = ["development-tools", "data-structures"]
 
 [dependencies]
 struct-reflection-derive = { version = "0.1.0", path = "./struct-reflection-derive" }

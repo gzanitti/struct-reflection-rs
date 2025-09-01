@@ -146,7 +146,7 @@ fn test_multi_generic_tuple_struct() {
 #[test]
 fn test_outer_tuple_struct() {
     let names = OuterTupleStruct::struct_reflection();
-    assert_eq!(names.unwrap(), vec!["0", "1"]);
+    assert_eq!(names.unwrap(), vec!["0", "1__0", "1__1", "1__2"]);
 }
 
 #[test]
