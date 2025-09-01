@@ -2,7 +2,13 @@
 name = "struct-reflection-derive"
 version = "0.1.0"
 edition = "2021"
+authors = ["Gaston Zanitti <gzanitti@gmail.com>"]
 description = "Derive macro implementation for struct-reflection"
+license = "MIT"                 
+repository = "https://github.com/tu-user/struct-reflection-rs"
+documentation = "https://docs.rs/struct-reflection"
+keywords = ["reflection", "struct", "macro", "derive"]
+categories = ["development-tools", "data-structures"]
 
 [lib]
 proc-macro = true
